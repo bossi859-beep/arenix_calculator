@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="dark" translate="no" class="notranslate">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google" content="notranslate" />
   <title>Arenix Calculator</title>
   <link rel="preconnect" href="https://api.fontshare.com" />
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet" />
@@ -697,7 +698,17 @@
       themeToggle: document.querySelector('[data-theme-toggle]')
     };
 
-    let currentLanguage = 'en';
+    function detectLanguage() {
+      const langs = Array.isArray(navigator.languages) && navigator.languages.length
+        ? navigator.languages
+        : [navigator.language || 'en'];
+      const normalized = langs.map((lang) => String(lang || '').toLowerCase());
+      if (normalized.some((lang) => lang.startsWith('cs') || lang.startsWith('sk'))) return 'cs';
+      if (normalized.some((lang) => lang.startsWith('de'))) return 'de';
+      return 'en';
+    }
+
+    let currentLanguage = detectLanguage();
 
     const money = (n) =>
       new Intl.NumberFormat('en-US', {
@@ -746,8 +757,7 @@
       const minimumProfitPayout = round2(entryFee * 1.20);
 
       if (profitPositions > 0) {
-        const minimumRequired = round2(profitPositions * minimumProfitPayout);
-        if (profitPool < minimumRequired) {
+        if (profitPool < round2(profitPositions * minimumProfitPayout)) {
           while (profitPositions > 0 && profitPool < round2(profitPositions * minimumProfitPayout)) {
             profitPositions -= 1;
             breakEvenPositions = paidPositions - profitPositions;
@@ -864,9 +874,11 @@
     els.calculateBtn.addEventListener('click', render);
     els.languageSelect.addEventListener('change', (e) => {
       currentLanguage = e.target.value;
+      els.languageSelect.value = currentLanguage;
       applyTranslations();
     });
 
+    els.languageSelect.value = currentLanguage;
     applyTranslations();
   </script>
 </body>
