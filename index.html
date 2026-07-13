@@ -394,6 +394,159 @@
     .footnote { font-size: var(--text-xs); color: var(--color-text-muted); }
     .mono { font-variant-numeric: tabular-nums lining-nums; }
 
+    .mobile-wizard {
+      display: none;
+    }
+
+    .mobile-progress {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.45rem 0.75rem;
+      border: 1px solid var(--color-border);
+      border-radius: 999px;
+      color: var(--color-text-muted);
+      background: var(--color-surface);
+      font-size: var(--text-xs);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: var(--space-4);
+    }
+
+    .mobile-progress strong {
+      color: var(--color-primary);
+      font-size: var(--text-sm);
+    }
+
+    .mobile-step {
+      display: none;
+      padding: var(--space-5);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      background:
+        radial-gradient(circle at top right, rgba(79,152,163,.16), transparent 34%),
+        var(--color-surface);
+      box-shadow: var(--shadow-md);
+    }
+
+    .mobile-step.active {
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    .mobile-step h2 {
+      font-size: clamp(1.55rem, 1.25rem + 4vw, 2.35rem);
+      line-height: 1.05;
+      font-weight: 900;
+      letter-spacing: -0.05em;
+    }
+
+    .mobile-step p {
+      color: var(--color-text-muted);
+      font-size: var(--text-sm);
+    }
+
+    .mobile-eyebrow {
+      color: var(--color-primary) !important;
+      font-size: var(--text-xs) !important;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .mobile-options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-3);
+    }
+
+    .mobile-options button {
+      min-height: 4.25rem;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      background: color-mix(in srgb, var(--color-surface-2) 70%, transparent);
+      color: var(--color-text);
+      font-size: var(--text-lg);
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.02);
+    }
+
+    .mobile-options button.active {
+      border-color: color-mix(in srgb, var(--color-primary) 68%, var(--color-border));
+      background: linear-gradient(135deg, color-mix(in srgb, var(--color-primary) 32%, var(--color-surface)), var(--color-surface));
+      color: var(--color-text);
+    }
+
+    .mobile-options-fee {
+      grid-template-columns: 1fr;
+    }
+
+    .mobile-result-grid {
+      display: grid;
+      gap: var(--space-3);
+    }
+
+    .mobile-result-card {
+      padding: var(--space-4);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      background: color-mix(in srgb, var(--color-surface-2) 68%, transparent);
+    }
+
+    .mobile-result-card span {
+      display: block;
+      color: var(--color-text-muted);
+      font-size: var(--text-xs);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: var(--space-2);
+    }
+
+    .mobile-result-card strong {
+      display: block;
+      font-size: clamp(1.4rem, 1.1rem + 4vw, 2rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      font-variant-numeric: tabular-nums lining-nums;
+    }
+
+    .mobile-result-card.featured {
+      background:
+        radial-gradient(circle at top right, rgba(130,189,90,.2), transparent 40%),
+        color-mix(in srgb, var(--color-success-soft) 72%, var(--color-surface));
+      border-color: color-mix(in srgb, var(--color-success) 42%, var(--color-border));
+    }
+
+    .mobile-result-card.featured strong {
+      color: var(--color-success);
+      font-size: clamp(2rem, 1.4rem + 7vw, 3.1rem);
+    }
+
+    .mobile-actions {
+      display: grid;
+      gap: var(--space-3);
+    }
+
+    .mobile-link-button {
+      border: 0;
+      background: transparent;
+      color: var(--color-text-muted);
+      font-size: var(--text-sm);
+      font-weight: 800;
+      padding: var(--space-2);
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .mobile-table-panel {
+      margin-top: var(--space-2);
+    }
+
+
+
     @media (max-width: 1080px) {
       .layout, .summary { grid-template-columns: 1fr; }
       .panel { border-right: 0; border-bottom: 1px solid var(--color-border); }
@@ -401,7 +554,10 @@
     }
 
     @media (max-width: 640px) {
-      .app, .panel, .results { padding: var(--space-4); }
+      .app { padding: var(--space-3); }
+      .panel, .results { padding: var(--space-4); }
+      .layout { display: none; }
+      .mobile-wizard { display: block; padding: var(--space-4); }
       .topbar { padding: var(--space-4); align-items: flex-start; }
       .topbar-actions { width: 100%; justify-content: space-between; }
       .stats { grid-template-columns: 1fr; }
@@ -445,6 +601,96 @@
           </button>
         </div>
       </header>
+
+
+      <section class="mobile-wizard" aria-label="Mobile calculator flow">
+        <div class="mobile-progress">
+          <span data-i18n="mobileStepLabel">Step</span>
+          <strong id="mobileStepNumber">1</strong>
+          <span>/ 3</span>
+        </div>
+
+        <div class="mobile-step active" data-mobile-step="1">
+          <p class="mobile-eyebrow" data-i18n="mobileStepOne">Trader count</p>
+          <h2 data-i18n="mobileTraderTitle">Select trader count</h2>
+          <p data-i18n="mobileTraderHint">Choose how many traders are in the arena.</p>
+          <div class="mobile-options" id="mobileTraderOptions">
+            <button type="button" data-mobile-traders="10">10</button>
+            <button type="button" data-mobile-traders="20">20</button>
+            <button type="button" data-mobile-traders="30">30</button>
+            <button type="button" data-mobile-traders="40">40</button>
+            <button type="button" data-mobile-traders="50">50</button>
+            <button type="button" data-mobile-traders="60">60</button>
+            <button type="button" data-mobile-traders="70">70</button>
+            <button type="button" data-mobile-traders="80">80</button>
+            <button type="button" data-mobile-traders="90">90</button>
+            <button type="button" data-mobile-traders="100">100</button>
+          </div>
+        </div>
+
+        <div class="mobile-step" data-mobile-step="2">
+          <p class="mobile-eyebrow" data-i18n="mobileStepTwo">Entry fee</p>
+          <h2 data-i18n="mobileEntryTitle">Select entry fee</h2>
+          <p data-i18n="mobileEntryHint">Choose the entry fee per trader.</p>
+          <div class="mobile-options mobile-options-fee" id="mobileEntryOptions">
+            <button type="button" data-mobile-entry="20">$20</button>
+            <button type="button" data-mobile-entry="50">$50</button>
+            <button type="button" data-mobile-entry="100">$100</button>
+            <button type="button" data-mobile-entry="200">$200</button>
+            <button type="button" data-mobile-entry="500">$500</button>
+          </div>
+          <button type="button" class="mobile-link-button" data-mobile-back="1" data-i18n="mobileBack">Back</button>
+        </div>
+
+        <div class="mobile-step" data-mobile-step="3">
+          <p class="mobile-eyebrow" data-i18n="mobileStepThree">Result</p>
+          <h2 data-i18n="mobileResultTitle">Your Arena result</h2>
+          <p id="mobileResultSentence">With 50 traders at $50 entry, 20 traders get paid.</p>
+
+          <div class="mobile-result-grid">
+            <article class="mobile-result-card featured">
+              <span data-i18n="mobilePartnerLabel">Partner (8%)</span>
+              <strong id="mobilePartnerValue">$0.00</strong>
+            </article>
+            <article class="mobile-result-card">
+              <span data-i18n="mobileTotalPoolLabel">Total Pool</span>
+              <strong id="mobileTotalPoolValue">$0.00</strong>
+            </article>
+            <article class="mobile-result-card">
+              <span data-i18n="mobileTraderPoolLabel">Trader Pool</span>
+              <strong id="mobileTraderPoolValue">$0.00</strong>
+            </article>
+            <article class="mobile-result-card">
+              <span data-i18n="mobilePaidTradersLabel">Paid Traders</span>
+              <strong id="mobilePaidTradersValue">0</strong>
+            </article>
+            <article class="mobile-result-card">
+              <span data-i18n="mobileLastPaidLabel">Last Paid Rank</span>
+              <strong id="mobileLastPaidValue">#0</strong>
+            </article>
+          </div>
+
+          <div class="mobile-actions">
+            <button type="button" class="button" id="mobileToggleTable" data-i18n="mobileShowPayouts">Show Rank Payouts</button>
+            <button type="button" class="mobile-link-button" data-mobile-back="2" data-i18n="mobileBack">Back</button>
+          </div>
+
+          <div class="mobile-table-panel" id="mobileTablePanel" hidden>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th data-i18n="rankHeader">Rank</th>
+                    <th data-i18n="payoutHeader">Payout</th>
+                    <th data-i18n="statusHeader">Status</th>
+                  </tr>
+                </thead>
+                <tbody id="mobilePayoutTable"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <main class="layout">
         <section class="panel">
@@ -588,6 +834,24 @@
         breakevenStatus: 'Break-even',
         unpaidStatus: 'Not paid',
         cutLineRow: 'CUT LINE · after rank {rank}',
+        mobileStepLabel: 'Step',
+        mobileStepOne: 'Trader count',
+        mobileTraderTitle: 'Select trader count',
+        mobileTraderHint: 'Choose how many traders are in the arena.',
+        mobileStepTwo: 'Entry fee',
+        mobileEntryTitle: 'Select entry fee',
+        mobileEntryHint: 'Choose the entry fee per trader.',
+        mobileStepThree: 'Result',
+        mobileResultTitle: 'Your Arena result',
+        mobileResultSentence: 'With {traders} traders at {entry} entry, {paid} traders get paid.',
+        mobilePartnerLabel: 'Partner (8%)',
+        mobileTotalPoolLabel: 'Total Pool',
+        mobileTraderPoolLabel: 'Trader Pool',
+        mobilePaidTradersLabel: 'Paid Traders',
+        mobileLastPaidLabel: 'Last Paid Rank',
+        mobileShowPayouts: 'Show Rank Payouts',
+        mobileHidePayouts: 'Hide Rank Payouts',
+        mobileBack: 'Back',
         themeLabelDark: 'Switch to light mode',
         themeLabelLight: 'Switch to dark mode'
       },
@@ -624,6 +888,24 @@
         breakevenStatus: 'Break-even',
         unpaidStatus: 'Nevyplaceno',
         cutLineRow: 'CUT LINE · po pořadí {rank}',
+        mobileStepLabel: 'Krok',
+        mobileStepOne: 'Počet traderů',
+        mobileTraderTitle: 'Vyber počet traderů',
+        mobileTraderHint: 'Zvol, kolik traderů je v aréně.',
+        mobileStepTwo: 'Vstupní poplatek',
+        mobileEntryTitle: 'Vyber vstupní poplatek',
+        mobileEntryHint: 'Zvol vstupní poplatek za jednoho tradera.',
+        mobileStepThree: 'Výsledek',
+        mobileResultTitle: 'Tvůj výsledek Arény',
+        mobileResultSentence: 'Při {traders} traderech a vstupu {entry} dostane výplatu {paid} traderů.',
+        mobilePartnerLabel: 'Partner (8 %)',
+        mobileTotalPoolLabel: 'Celkový pool',
+        mobileTraderPoolLabel: 'Trader Pool',
+        mobilePaidTradersLabel: 'Placené pozice',
+        mobileLastPaidLabel: 'Poslední placené pořadí',
+        mobileShowPayouts: 'Ukázat výplaty podle pořadí',
+        mobileHidePayouts: 'Skrýt výplaty podle pořadí',
+        mobileBack: 'Zpět',
         themeLabelDark: 'Přepnout do světlého režimu',
         themeLabelLight: 'Přepnout do tmavého režimu'
       },
@@ -660,6 +942,24 @@
         breakevenStatus: 'Break-even',
         unpaidStatus: 'Nicht bezahlt',
         cutLineRow: 'CUT LINE · nach Rang {rank}',
+        mobileStepLabel: 'Schritt',
+        mobileStepOne: 'Trader-Anzahl',
+        mobileTraderTitle: 'Trader-Anzahl wählen',
+        mobileTraderHint: 'Wählen Sie, wie viele Trader in der Arena sind.',
+        mobileStepTwo: 'Entry Fee',
+        mobileEntryTitle: 'Entry Fee wählen',
+        mobileEntryHint: 'Wählen Sie die Entry Fee pro Trader.',
+        mobileStepThree: 'Ergebnis',
+        mobileResultTitle: 'Ihr Arena-Ergebnis',
+        mobileResultSentence: 'Bei {traders} Tradern und {entry} Entry erhalten {paid} Trader eine Auszahlung.',
+        mobilePartnerLabel: 'Partner (8 %)',
+        mobileTotalPoolLabel: 'Gesamtpool',
+        mobileTraderPoolLabel: 'Trader Pool',
+        mobilePaidTradersLabel: 'Bezahlte Positionen',
+        mobileLastPaidLabel: 'Letzter bezahlter Rang',
+        mobileShowPayouts: 'Rang-Auszahlungen anzeigen',
+        mobileHidePayouts: 'Rang-Auszahlungen ausblenden',
+        mobileBack: 'Zurück',
         themeLabelDark: 'Zum hellen Modus wechseln',
         themeLabelLight: 'Zum dunklen Modus wechseln'
       }
@@ -709,6 +1009,12 @@
       const [whole, cents] = fixed.split('.');
       const wholeFormatted = Number(whole).toLocaleString('en-US');
       return `${sign}$${wholeFormatted}<span class="money-cents">.${cents}</span>`;
+    }
+
+    function moneyShort(n) {
+      const value = Number(n || 0);
+      const sign = value < 0 ? '-' : '';
+      return `${sign}$${Math.abs(value).toLocaleString('en-US', { maximumFractionDigits: 0 })}`;
     }
 
     const round2 = (n) => Math.round((n + Number.EPSILON) * 100) / 100;
@@ -838,7 +1144,108 @@
       });
 
       els.table.innerHTML = html.join('');
+      renderMobile(data, numberOfTraders, entryFee);
     }
+
+
+    const mobile = {
+      step: 1,
+      steps: Array.from(document.querySelectorAll('[data-mobile-step]')),
+      stepNumber: $('mobileStepNumber'),
+      partnerValue: $('mobilePartnerValue'),
+      totalPoolValue: $('mobileTotalPoolValue'),
+      traderPoolValue: $('mobileTraderPoolValue'),
+      paidTradersValue: $('mobilePaidTradersValue'),
+      lastPaidValue: $('mobileLastPaidValue'),
+      resultSentence: $('mobileResultSentence'),
+      tablePanel: $('mobileTablePanel'),
+      tableBody: $('mobilePayoutTable'),
+      toggleTable: $('mobileToggleTable')
+    };
+
+    function setMobileStep(step) {
+      mobile.step = step;
+      if (mobile.stepNumber) mobile.stepNumber.textContent = step;
+      mobile.steps.forEach((el) => {
+        el.classList.toggle('active', Number(el.dataset.mobileStep) === step);
+      });
+    }
+
+    function renderMobile(data, numberOfTraders, entryFee) {
+      if (!mobile.stepNumber) return;
+
+      document.querySelectorAll('[data-mobile-traders]').forEach((button) => {
+        button.classList.toggle('active', Number(button.dataset.mobileTraders) === numberOfTraders);
+      });
+
+      document.querySelectorAll('[data-mobile-entry]').forEach((button) => {
+        button.classList.toggle('active', Number(button.dataset.mobileEntry) === entryFee);
+      });
+
+      mobile.partnerValue.textContent = money(data.partnerShare);
+      mobile.totalPoolValue.textContent = money(data.totalPool);
+      mobile.traderPoolValue.textContent = money(data.payoutPool);
+      mobile.paidTradersValue.textContent = `${data.paidPositions} / ${numberOfTraders}`;
+      mobile.lastPaidValue.textContent = `#${data.lastPaidRank}`;
+      mobile.resultSentence.textContent = t('mobileResultSentence', {
+        traders: numberOfTraders,
+        entry: moneyShort(entryFee),
+        paid: data.paidPositions
+      });
+
+      const statusKeyMap = {
+        profit: 'profitStatus',
+        breakeven: 'breakevenStatus',
+        unpaid: 'unpaidStatus'
+      };
+
+      if (mobile.tableBody) {
+        mobile.tableBody.innerHTML = data.rows.map((row) => {
+          const topRankClass = row.rank === 1 ? ' top-rank-1' : row.rank === 2 ? ' top-rank-2' : row.rank === 3 ? ' top-rank-3' : '';
+          return `
+            <tr class="${row.className}${topRankClass}">
+              <td><span class="rank-pill">#${row.rank}</span></td>
+              <td><span class="payout-value updated">${moneyTable(row.payout)}</span></td>
+              <td><span class="status-badge ${row.badge}">${t(statusKeyMap[row.status])}</span></td>
+            </tr>
+          `;
+        }).join('');
+      }
+
+      if (mobile.toggleTable && mobile.tablePanel) {
+        mobile.toggleTable.textContent = mobile.tablePanel.hidden ? t('mobileShowPayouts') : t('mobileHidePayouts');
+      }
+    }
+
+    document.querySelectorAll('[data-mobile-traders]').forEach((button) => {
+      button.addEventListener('click', () => {
+        els.traders.value = button.dataset.mobileTraders;
+        render();
+        setMobileStep(2);
+      });
+    });
+
+    document.querySelectorAll('[data-mobile-entry]').forEach((button) => {
+      button.addEventListener('click', () => {
+        els.entryFee.value = button.dataset.mobileEntry;
+        render();
+        setMobileStep(3);
+      });
+    });
+
+    document.querySelectorAll('[data-mobile-back]').forEach((button) => {
+      button.addEventListener('click', () => {
+        setMobileStep(Number(button.dataset.mobileBack));
+      });
+    });
+
+    if (mobile.toggleTable && mobile.tablePanel) {
+      mobile.toggleTable.addEventListener('click', () => {
+        mobile.tablePanel.hidden = !mobile.tablePanel.hidden;
+        mobile.toggleTable.textContent = mobile.tablePanel.hidden ? t('mobileShowPayouts') : t('mobileHidePayouts');
+      });
+    }
+
 
     function updateThemeAria() {
       const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
