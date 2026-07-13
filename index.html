@@ -440,7 +440,7 @@
           <div class="stack">
             <div>
               <div class="label" data-i18n="inputsTitle">Inputs</div>
-              <p class="hint" data-i18n="inputsHint">Choose the trader count and entry fee from fixed options. The K40 model is locked in.</p>
+              <p class="hint" data-i18n="inputsHint">Choose the trader count and entry fee from fixed options. The TAP40% model is locked in.</p>
             </div>
 
             <div class="field">
@@ -473,15 +473,15 @@
             <div class="field">
               <label class="label" for="model" data-i18n="modelLabel">Model</label>
               <select class="select" id="model" disabled>
-                <option selected>K40</option>
+                <option selected>TAP40%</option>
               </select>
             </div>
 
             <button class="button" id="calculateBtn" data-i18n="generateButton">Generate payout table</button>
 
             <div class="mini-card">
-              <h3 data-i18n="rulesTitle">K40 rules</h3>
-              <p data-i18n="rulesText">Trader count is limited to 10–100 through the fixed selector. Then 40% of traders are paid, 75% of those paid spots are profit positions, 25% are break-even, and everything below the cut line gets $0.</p>
+              <h3 data-i18n="rulesTitle">TAP40% rules</h3>
+              <p data-i18n="rulesText">Trader count is limited to 10–100 through the fixed selector. TAP40% pays 40% of traders. Everything below the cut line gets $0.</p>
             </div>
           </div>
         </section>
@@ -489,7 +489,7 @@
         <section class="results">
           <div class="hero">
             <h2 data-i18n="heroTitle">Rank-by-rank payout output</h2>
-            <p data-i18n="heroText">The calculator distributes the 85% payout pool using a top-heavy weighted curve. Every profit rank earns more than the entry fee, break-even positions get the exact entry fee back, and rank 1 is adjusted for rounding so the total matches exactly.</p>
+            <p data-i18n="heroText">The calculator distributes the 85% profit pool using a top-heavy weighted curve. Every profit rank earns more than the entry fee, break-even positions get the exact entry fee back, and rank 1 is adjusted for rounding so the total matches exactly.</p>
           </div>
 
           <div class="stats">
@@ -503,9 +503,7 @@
             <article class="summary-card">
               <h3 data-i18n="poolSplitTitle">Pool split</h3>
               <div class="summary-list">
-                <div class="summary-row"><span data-i18n="payoutPool">Payout Pool (85%)</span><span id="payoutPool">$0.00</span></div>
-                <div class="summary-row"><span data-i18n="breakEvenPool">Break-Even Pool</span><span id="breakEvenPool">$0.00</span></div>
-                <div class="summary-row"><span data-i18n="profitPool">Profit Pool</span><span id="profitPool">$0.00</span></div>
+                <div class="summary-row"><span data-i18n="profitPool85">Profit Pool (85%)</span><span id="payoutPool">$0.00</span></div>
               </div>
             </article>
 
@@ -513,8 +511,6 @@
               <h3 data-i18n="positionSplitTitle">Position split</h3>
               <div class="summary-list">
                 <div class="summary-row"><span data-i18n="paidPositions">Paid Positions</span><span id="paidPositions">0</span></div>
-                <div class="summary-row"><span data-i18n="profitPositions">Profit Positions</span><span id="profitPositions">0</span></div>
-                <div class="summary-row"><span data-i18n="breakEvenPositions">Break-Even Positions</span><span id="breakEvenPositions">0</span></div>
               </div>
             </article>
 
@@ -522,7 +518,6 @@
               <h3 data-i18n="cutLineTitle">Cut line</h3>
               <div class="summary-list">
                 <div class="summary-row"><span data-i18n="lastPaidRank">Last paid rank</span><span id="lastPaidRank">0</span></div>
-                <div class="summary-row"><span data-i18n="cutLineAfter">Cut line after rank</span><span id="cutLineAfter">0</span></div>
                 <div class="summary-row"><span data-i18n="unpaidPositions">Unpaid positions</span><span id="unpaidPositions">0</span></div>
               </div>
             </article>
@@ -554,30 +549,25 @@
         brandTitle: 'Arenix Calculator',
         brandSubtitle: 'Create a payout table by rank for any trader count and entry fee.',
         inputsTitle: 'Inputs',
-        inputsHint: 'Choose the trader count and entry fee from fixed options. The K40 model is locked in.',
+        inputsHint: 'Choose the trader count and entry fee from fixed options. The TAP40% model is locked in.',
         tradersLabel: 'Number of traders',
         entryFeeLabel: 'Entry fee per trader',
         modelLabel: 'Model',
         generateButton: 'Generate payout table',
-        rulesTitle: 'K40 rules',
-        rulesText: 'Trader count is limited to 10–100 through the fixed selector. Then 40% of traders are paid, 75% of those paid spots are profit positions, 25% are break-even, and everything below the cut line gets $0.',
+        rulesTitle: 'TAP40% rules',
+        rulesText: 'Trader count is limited to 10–100 through the fixed selector. TAP40% pays 40% of traders. Everything below the cut line gets $0.',
         heroTitle: 'Rank-by-rank payout output',
-        heroText: 'The calculator distributes the 85% payout pool using a top-heavy weighted curve. Every profit rank earns more than the entry fee, break-even positions get the exact entry fee back, and rank 1 is adjusted for rounding so the total matches exactly.',
+        heroText: 'The calculator distributes the 85% profit pool using a top-heavy weighted curve. Every profit rank earns more than the entry fee, break-even positions get the exact entry fee back, and rank 1 is adjusted for rounding so the total matches exactly.',
         totalPool: 'Total Pool',
         feePool: '15% Fee',
         partnerShare: 'Partner Share (8%)',
         platformShare: 'Platform Share (7%)',
         poolSplitTitle: 'Pool split',
-        payoutPool: 'Payout Pool (85%)',
-        breakEvenPool: 'Break-Even Pool',
-        profitPool: 'Profit Pool',
+        profitPool85: 'Profit Pool (85%)',
         positionSplitTitle: 'Position split',
         paidPositions: 'Paid Positions',
-        profitPositions: 'Profit Positions',
-        breakEvenPositions: 'Break-Even Positions',
         cutLineTitle: 'Cut line',
         lastPaidRank: 'Last paid rank',
-        cutLineAfter: 'Cut line after rank',
         unpaidPositions: 'Unpaid positions',
         rankHeader: 'Rank',
         payoutHeader: 'Payout',
@@ -595,30 +585,25 @@
         brandTitle: 'Arenix Calculator',
         brandSubtitle: 'Vytvořte payout tabulku podle pořadí pro libovolný počet traderů a vstupní poplatek.',
         inputsTitle: 'Vstupy',
-        inputsHint: 'Vyberte počet traderů a vstupní poplatek z pevných možností. Model K40 je uzamčen.',
+        inputsHint: 'Vyberte počet traderů a vstupní poplatek z pevných možností. Model TAP40% je uzamčen.',
         tradersLabel: 'Počet traderů',
         entryFeeLabel: 'Vstupní poplatek za tradera',
         modelLabel: 'Model',
         generateButton: 'Vygenerovat payout tabulku',
-        rulesTitle: 'Pravidla K40',
-        rulesText: 'Počet traderů je omezen na 10–100 pomocí pevného výběru. Poté je vyplaceno 40 % traderů, 75 % z těchto placených míst jsou profitní pozice, 25 % jsou break-even pozice a vše pod cut line dostává $0.',
+        rulesTitle: 'Pravidla TAP40%',
+        rulesText: 'Počet traderů je omezen na 10–100 pomocí pevného výběru. TAP40% vyplácí 40 % traderů. Vše pod cut line dostává $0.',
         heroTitle: 'Výstup payoutů podle pořadí',
-        heroText: 'Kalkulátor rozděluje 85% payout pool pomocí top-heavy vážené křivky. Každá profitní pozice dostane více než vstupní poplatek, break-even pozice dostanou přesně vstupní poplatek zpět a 1. místo se upraví kvůli zaokrouhlení tak, aby celkový součet přesně seděl.',
+        heroText: 'Kalkulátor rozděluje 85% Profit Pool pomocí vážené křivky směrem k nejvyšším pozicím. Každá profitní pozice dostane více než vstupní poplatek, break-even pozice dostanou přesně vstupní poplatek zpět a 1. místo se upraví kvůli zaokrouhlení tak, aby celkový součet přesně seděl.',
         totalPool: 'Celkový pool',
         feePool: 'Poplatek 15 %',
         partnerShare: 'Podíl partnera (8 %)',
         platformShare: 'Podíl platformy (7 %)',
         poolSplitTitle: 'Rozdělení poolu',
-        payoutPool: 'Payout Pool (85 %)',
-        breakEvenPool: 'Break-Even Pool',
-        profitPool: 'Profit Pool',
+        profitPool85: 'Profit Pool (85 %)',
         positionSplitTitle: 'Rozdělení pozic',
         paidPositions: 'Placené pozice',
-        profitPositions: 'Profitní pozice',
-        breakEvenPositions: 'Break-Even pozice',
         cutLineTitle: 'Cut line',
         lastPaidRank: 'Poslední placené pořadí',
-        cutLineAfter: 'Cut line po pořadí',
         unpaidPositions: 'Nevyplacené pozice',
         rankHeader: 'Pořadí',
         payoutHeader: 'Výplata',
@@ -636,30 +621,25 @@
         brandTitle: 'Arenix Calculator',
         brandSubtitle: 'Erstellen Sie eine Auszahlungstabelle nach Rang für jede Trader-Anzahl und Startgebühr.',
         inputsTitle: 'Eingaben',
-        inputsHint: 'Wählen Sie die Trader-Anzahl und die Startgebühr aus festen Optionen. Das K40-Modell ist fest eingestellt.',
+        inputsHint: 'Wählen Sie die Trader-Anzahl und die Startgebühr aus festen Optionen. Das TAP40%-Modell ist fest eingestellt.',
         tradersLabel: 'Anzahl der Trader',
         entryFeeLabel: 'Startgebühr pro Trader',
         modelLabel: 'Modell',
         generateButton: 'Auszahlungstabelle erzeugen',
-        rulesTitle: 'K40-Regeln',
-        rulesText: 'Die Trader-Anzahl ist über die feste Auswahl auf 10–100 begrenzt. Danach werden 40 % der Trader ausbezahlt, 75 % dieser bezahlten Plätze sind Profit-Positionen, 25 % sind Break-even-Positionen und alle Plätze unter der Cut Line erhalten $0.',
+        rulesTitle: 'TAP40%-Regeln',
+        rulesText: 'Die Trader-Anzahl ist über die feste Auswahl auf 10–100 begrenzt. TAP40% zahlt 40 % der Trader aus. Alle Plätze unter der Cut Line erhalten $0.',
         heroTitle: 'Auszahlungsübersicht nach Rang',
-        heroText: 'Der Rechner verteilt den 85-%-Auszahlungspool mit einer top-heavy Gewichtungskurve. Jede Profit-Position erhält mehr als die Startgebühr, Break-even-Positionen erhalten exakt die Startgebühr zurück, und Rang 1 wird wegen Rundungsdifferenzen angepasst, damit die Summe exakt passt.',
+        heroText: 'Der Rechner verteilt den 85-%-Profit-Pool mit einer Top-heavy-Gewichtungskurve. Jede Profit-Position erhält mehr als die Startgebühr, Break-even-Positionen erhalten exakt die Startgebühr zurück, und Rang 1 wird wegen Rundungsdifferenzen angepasst, damit die Summe exakt passt.',
         totalPool: 'Gesamtpool',
         feePool: '15-%-Gebühr',
         partnerShare: 'Partneranteil (8 %)',
         platformShare: 'Plattformanteil (7 %)',
         poolSplitTitle: 'Pool-Aufteilung',
-        payoutPool: 'Auszahlungspool (85 %)',
-        breakEvenPool: 'Break-Even-Pool',
-        profitPool: 'Profit-Pool',
+        profitPool85: 'Profit-Pool (85 %)',
         positionSplitTitle: 'Positionsaufteilung',
         paidPositions: 'Bezahlte Positionen',
-        profitPositions: 'Profit-Positionen',
-        breakEvenPositions: 'Break-Even-Positionen',
         cutLineTitle: 'Cut Line',
         lastPaidRank: 'Letzter bezahlter Rang',
-        cutLineAfter: 'Cut Line nach Rang',
         unpaidPositions: 'Nicht bezahlte Positionen',
         rankHeader: 'Rang',
         payoutHeader: 'Auszahlung',
@@ -685,13 +665,8 @@
       partnerShare: $('partnerShare'),
       platformShare: $('platformShare'),
       payoutPool: $('payoutPool'),
-      breakEvenPool: $('breakEvenPool'),
-      profitPool: $('profitPool'),
       paidPositions: $('paidPositions'),
-      profitPositions: $('profitPositions'),
-      breakEvenPositions: $('breakEvenPositions'),
       lastPaidRank: $('lastPaidRank'),
-      cutLineAfter: $('cutLineAfter'),
       unpaidPositions: $('unpaidPositions'),
       calculateBtn: $('calculateBtn'),
       languageSelect: $('languageSelect'),
@@ -813,13 +788,8 @@
       els.partnerShare.textContent = money(data.partnerShare);
       els.platformShare.textContent = money(data.platformShare);
       els.payoutPool.textContent = money(data.payoutPool);
-      els.breakEvenPool.textContent = money(data.breakEvenPool);
-      els.profitPool.textContent = money(data.profitPool);
       els.paidPositions.textContent = data.paidPositions;
-      els.profitPositions.textContent = data.profitPositions;
-      els.breakEvenPositions.textContent = data.breakEvenPositions;
       els.lastPaidRank.textContent = data.lastPaidRank;
-      els.cutLineAfter.textContent = data.cutLineAfter;
       els.unpaidPositions.textContent = data.unpaidPositions;
 
       const statusKeyMap = {
