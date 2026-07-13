@@ -1205,16 +1205,25 @@
       };
 
       if (mobile.tableBody) {
-        mobile.tableBody.innerHTML = data.rows.map((row) => {
+        const mobileHtml = [];
+        data.rows.forEach((row) => {
           const topRankClass = row.rank === 1 ? ' top-rank-1' : row.rank === 2 ? ' top-rank-2' : row.rank === 3 ? ' top-rank-3' : '';
-          return `
+          mobileHtml.push(`
             <tr class="${row.className}${topRankClass}">
               <td><span class="rank-pill">#${row.rank}</span></td>
               <td><span class="payout-value updated">${moneyTable(row.payout)}</span></td>
               <td><span class="status-badge ${row.badge}">${t(statusKeyMap[row.status])}</span></td>
             </tr>
-          `;
-        }).join('');
+          `);
+          if (row.rank === data.lastPaidRank) {
+            mobileHtml.push(`
+              <tr class="cutline">
+                <td colspan="3">${t('cutLineRow', { rank: data.lastPaidRank })}</td>
+              </tr>
+            `);
+          }
+        });
+        mobile.tableBody.innerHTML = mobileHtml.join('');
       }
 
       if (mobile.toggleTable && mobile.tablePanel) {
