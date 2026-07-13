@@ -833,7 +833,7 @@
         statusHeader: 'Status',
         footnote: 'Formula used for profit ranks.',
         profitStatus: 'Profit',
-        breakevenStatus: 'Break-even',
+        breakevenStatus: 'Profit',
         unpaidStatus: 'Not paid',
         cutLineRow: 'CUT LINE · after rank {rank}',
         mobileStepLabel: 'Step',
@@ -888,7 +888,7 @@
         statusHeader: 'Status',
         footnote: 'Vzorec použitý pro profitní pořadí.',
         profitStatus: 'Profit',
-        breakevenStatus: 'Break-even',
+        breakevenStatus: 'Profit',
         unpaidStatus: 'Nevyplaceno',
         cutLineRow: 'CUT LINE · po pořadí {rank}',
         mobileStepLabel: 'Krok',
@@ -943,7 +943,7 @@
         statusHeader: 'Status',
         footnote: 'Formel für Profit-Ränge.',
         profitStatus: 'Profit',
-        breakevenStatus: 'Break-even',
+        breakevenStatus: 'Profit',
         unpaidStatus: 'Nicht bezahlt',
         cutLineRow: 'CUT LINE · nach Rang {rank}',
         mobileStepLabel: 'Schritt',
@@ -1095,7 +1095,7 @@
         if (rank <= profitPositions) {
           rows.push({ rank, payout: payouts[rank - 1] ?? 0, status: 'profit', className: 'profit-row', badge: 'profit-badge' });
         } else if (rank <= paidPositions) {
-          rows.push({ rank, payout: round2(entryFee), status: 'breakeven', className: 'breakeven-row', badge: 'breakeven-badge' });
+          rows.push({ rank, payout: round2(entryFee), status: 'profit', className: 'profit-row', badge: 'profit-badge' });
         } else {
           rows.push({ rank, payout: 0, status: 'unpaid', className: 'unpaid-row', badge: 'unpaid-badge' });
         }
