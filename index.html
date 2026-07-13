@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google" content="notranslate" />
-  <title>Arenix Calculator</title>
+  <title>Arenix Partner Calculator</title>
   <link rel="preconnect" href="https://api.fontshare.com" />
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet" />
   <style>
@@ -417,8 +417,8 @@
             <path d="M46 50V14l10 10" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
           <div>
-            <h1 data-i18n="brandTitle">Arenix Calculator</h1>
-            <p data-i18n="brandSubtitle">Create a payout table by rank for any trader count and entry fee.</p>
+            <h1 data-i18n="brandTitle">Arenix Partner Calculator</h1>
+            <p data-i18n="brandSubtitle">See every rank’s payout—instantly, for any trader count or entry fee.</p>
           </div>
         </div>
         <div class="topbar-actions">
@@ -440,7 +440,7 @@
           <div class="stack">
             <div>
               <div class="label" data-i18n="inputsTitle">Inputs</div>
-              <p class="hint" data-i18n="inputsHint">Choose the trader count and entry fee from fixed options. The TAP40% model is locked in.</p>
+              <p class="hint" data-i18n="inputsHint">Select the trader count and entry fee. The TOP 40% payout model is locked—your numbers update instantly.</p>
             </div>
 
             <div class="field">
@@ -460,7 +460,7 @@
             </div>
 
             <div class="field">
-              <label class="label" for="entryFee" data-i18n="entryFeeLabel">Entry fee per trader</label>
+              <label class="label" for="entryFee" data-i18n="entryFeeLabel">Entry Fee per Trader</label>
               <select class="select mono" id="entryFee">
                 <option value="20">20</option>
                 <option value="50" selected>50</option>
@@ -473,28 +473,27 @@
             <div class="field">
               <label class="label" for="model" data-i18n="modelLabel">Model</label>
               <select class="select" id="model" disabled>
-                <option selected>TAP40%</option>
+                <option selected>TOP40%</option>
               </select>
             </div>
 
-            <button class="button" id="calculateBtn" data-i18n="generateButton">Generate payout table</button>
+            <button class="button" id="calculateBtn" data-i18n="generateButton">Generate My Payout Table</button>
 
             <div class="mini-card">
-              <h3 data-i18n="rulesTitle">TAP40% rules</h3>
-              <p data-i18n="rulesText">Trader count is limited to 10–100 through the fixed selector. TAP40% pays 40% of traders. Everything below the cut line gets $0.</p>
+              <h3 data-i18n="rulesTitle">TOP40% rule</h3>
+              <p data-i18n="rulesText">Select 10–100 traders. 85% of the pool rewards the TOP 40%. Below the cut line: $0.</p>
             </div>
           </div>
         </section>
 
         <section class="results">
           <div class="hero">
-            <h2 data-i18n="heroTitle">Rank-by-rank payout output</h2>
-            <p data-i18n="heroText">The calculator distributes the 85% profit pool using a top-heavy weighted curve. Every profit rank earns more than the entry fee, break-even positions get the exact entry fee back, and rank 1 is adjusted for rounding so the total matches exactly.</p>
+            <h2 data-i18n="heroTitle">Rank-by-Rank Payout Breakdown</h2>
+            <p data-i18n="heroText">85% OF THE POOL GOES TO THE TOP 40% of TRADERS.</p>
           </div>
 
           <div class="stats">
             <article class="stat"><div class="k" data-i18n="totalPool">Total Pool</div><div class="v" id="totalPool">$0.00</div></article>
-            <article class="stat"><div class="k" data-i18n="feePool">15% Fee</div><div class="v" id="feePool">$0.00</div></article>
             <article class="stat"><div class="k" data-i18n="partnerShare">Partner Share (8%)</div><div class="v" id="partnerShare">$0.00</div></article>
             <article class="stat"><div class="k" data-i18n="platformShare">Platform Share (7%)</div><div class="v" id="platformShare">$0.00</div></article>
           </div>
@@ -536,7 +535,7 @@
             </table>
           </div>
 
-          <p class="footnote" data-i18n="footnote">Formula used for profit ranks: minimum profit payout = entry fee × 1.20, then the remaining profit pool is distributed with weight(rank) = (profitPositions - rank + 1)^1.25.</p>
+          <p class="footnote" data-i18n="footnote">Formula used for profit ranks.</p>
         </section>
       </main>
     </div>
