@@ -328,8 +328,19 @@
     }
 
     .payout-value {
-      display: inline-block;
-      font-weight: 800;
+      display: inline-flex;
+      align-items: baseline;
+      gap: 0.01em;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+
+    .money-cents {
+      font-size: 0.58em;
+      font-weight: 700;
+      color: var(--color-text-muted);
+      opacity: 0.72;
+      margin-left: 0.02em;
     }
 
     @media (prefers-reduced-motion: no-preference) {
@@ -683,13 +694,22 @@
       return 'en';
     }
 
-    let currentLanguage = detectLanguage();
+    let currentLanguage = 'en';
 
     const money = (n) =>
       new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD'
       }).format(Number(n || 0));
+
+    function moneyTable(n) {
+      const value = Number(n || 0);
+      const sign = value < 0 ? '-' : '';
+      const fixed = Math.abs(value).toFixed(2);
+      const [whole, cents] = fixed.split('.');
+      const wholeFormatted = Number(whole).toLocaleString('en-US');
+      return `${sign}$${wholeFormatted}<span class="money-cents">.${cents}</span>`;
+    }
 
     const round2 = (n) => Math.round((n + Number.EPSILON) * 100) / 100;
 
@@ -804,7 +824,7 @@
         html.push(`
           <tr class="${row.className}${topRankClass}">
             <td><span class="rank-pill">#${row.rank}</span></td>
-            <td><span class="payout-value updated">${money(row.payout)}</span></td>
+            <td><span class="payout-value updated">${moneyTable(row.payout)}</span></td>
             <td><span class="status-badge ${row.badge}">${t(statusKeyMap[row.status])}</span></td>
           </tr>
         `);
